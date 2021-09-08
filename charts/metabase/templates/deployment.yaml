@@ -80,9 +80,15 @@ spec:
                 key: {{ or .Values.database.existingSecretConnectionURIKey "connectionURI" }}
             {{- else }}
           - name: MB_DB_HOST
-            value: {{ .Values.database.host | quote }}
+            valueFrom:
+              configMapRef:
+                name: {{ or .Values.database.existingConfigMap (printf "%s-database" (include "metabase.fullname" .)) }}
+                key: {{ or .Values.database.existingConfigMapHostKey "host" }}
           - name: MB_DB_PORT
-            value: {{ .Values.database.port | quote }}
+            valueFrom:
+              configMapRef:
+                name: {{ or .Values.database.existingConfigMap (printf "%s-database" (include "metabase.fullname" .)) }}
+                key: {{ or .Values.database.existingConfigMapPortKey "port" }}
           - name: MB_DB_DBNAME
             value: {{ .Values.database.dbname | quote }}
           - name: MB_DB_USER

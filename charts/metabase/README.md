@@ -71,6 +71,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.host                    | Database host                                               | null              |
 | database.port                    | Database port                                               | null              |
 | database.dbname                  | Database name                                               | null              |
+| database.existingConfigMap       | Exising config map for host and port                        | null              |
 | database.username                | Database username                                           | null              |
 | database.password                | Database password                                           | null              |
 | database.existingSecret          | Exising secret for database credentials                     | null              |
